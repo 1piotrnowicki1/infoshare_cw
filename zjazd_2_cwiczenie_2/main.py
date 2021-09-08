@@ -9,3 +9,22 @@
 6. funkcje uruchamiamy w bloku if __ name __ == '__ main __':
 
 """
+
+baza_1 = [
+    ("Basia", "Mig"),
+    ("Ala", "Kot"),
+    ("Ewa", "Sat"),
+    ("Marek", "Nowak"),
+    ("Karol", "Kowalski")
+]
+
+def wyszukiwarka():
+    for osoba in baza_1:
+        if osoba[0] == "Marek":
+            print("Cześć Marek")
+        else:
+            print("To nie Marek")
+        print(osoba)
+
+if __name__ == "__main__":
+    wyszukiwarka()
