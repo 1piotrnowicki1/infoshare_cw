@@ -15,16 +15,50 @@ baza_1 = [
     ("Ala", "Kot"),
     ("Ewa", "Sat"),
     ("Marek", "Nowak"),
+    ("Adam", "Bak"),
     ("Karol", "Kowalski")
 ]
 
+baza_2 = {
+    ("Basia", "Mig"): "23434",
+    ("Ala", "Kot"): "23437",
+    ("Ewa", "Sat"): "04564",
+    ("Marek", "Nowak"): "0456056",
+    ("Adam", "Bak"): "054534",
+    ("Karol", "Kowalski"): "014325"
+}
+
 def wyszukiwarka():
-    for osoba in baza_1:
+    for idx, osoba in enumerate(baza_1):
+        print(idx)
         if osoba[0] == "Marek":
             print("Cześć Marek")
+        elif osoba[0] == "Ewa":
+            pass
         else:
             print("To nie Marek")
-        print(osoba)
+        print(str(osoba) + "\n")
+    print("Koniec for loopa")
+
+
+def wyszukiwarka_nazwiska(imie):
+    count = 0
+    nazwisko = None
+    while not nazwisko:
+        if baza_1[count][0] == imie:
+            nazwisko = baza_1[count][1]
+        count += 1
+    print(nazwisko)
+
 
 if __name__ == "__main__":
-    wyszukiwarka()
+    # wyszukiwarka()
+
+    for idx in range(3,10,2):
+        print(idx)
+
+    wyszukiwarka_nazwiska("Ewa")
+
+
+
+
