@@ -26,3 +26,4 @@ for char in my_string:
     print(my_dict)
     print(10* '*')
 print(my_dict)
+
