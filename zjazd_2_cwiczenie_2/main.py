@@ -19,13 +19,22 @@ baza_1 = [
     ("Karol", "Kowalski")
 ]
 
+Ewa = ("Ewa", "Sat")
+
 baza_2 = {
     ("Basia", "Mig"): "23434",
     ("Ala", "Kot"): "23437",
-    ("Ewa", "Sat"): "04564",
-    ("Marek", "Nowak"): "0456056",
+    Ewa: "0456056",
+    Ewa: "0456056",
+    Ewa: "0456056",
     ("Adam", "Bak"): "054534",
     ("Karol", "Kowalski"): "014325"
+}
+
+baza_3 = {
+    "Banan": 1,
+    "Jabłko": 5,
+    "Cytryna": 1,
 }
 
 def wyszukiwarka():
@@ -51,6 +60,12 @@ def wyszukiwarka_nazwiska(imie):
     print(nazwisko)
 
 
+def wyszukiwarka_numerów(imie, nazwisko):
+    return baza_2[imie, nazwisko]
+
+
+
+
 if __name__ == "__main__":
     # wyszukiwarka()
 
@@ -58,7 +73,18 @@ if __name__ == "__main__":
         print(idx)
 
     wyszukiwarka_nazwiska("Ewa")
+    numer = wyszukiwarka_numerów("Ewa", "Sat")
+    print(numer)
 
+    print(baza_3["Banan"])
 
+    owoce = {
+        "malina",
+        "pomarancza",
+        "pomarancza",
+        "sliwka"
+    }
 
+    print(owoce)
 
+    print(len(owoce))
