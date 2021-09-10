@@ -33,7 +33,7 @@ def rzut_kostka_check_duplicate():
         return True
 
 
-def double_dice_throw(throws):
+def double_dice_throw():
     number_of_doubles = 0
     for idx in range(throws):
         result1 = rzut_kostka()
@@ -48,4 +48,4 @@ throws = int(input("Podaj liczbę rzutów: "))
 
 rzut_kostka()
 print(rzut_kostka_check_duplicate())
-print(f'Przy rzucie dwoma kośćmi było {double_dice_throw(throws)} powtórzeń')
+print(f'Przy rzucie dwoma kośćmi było {double_dice_throw()} powtórzeń')
