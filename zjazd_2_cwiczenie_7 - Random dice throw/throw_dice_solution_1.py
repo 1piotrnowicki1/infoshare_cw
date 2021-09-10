@@ -14,15 +14,15 @@ Napisz funkcję która:
 
 import random
 
+
 def rzut_kostka():
     kostka = [1, 2, 3, 4, 5, 6]
     return random.choice(kostka)
 
 
 def rzut_kostka_check_duplicate():
-    n = int(input("Podaj liczbę rzutów: "))
     nowe_rzuty = []
-    for idx in range(n):
+    for idx in range(throws):
         wynik = rzut_kostka()
         nowe_rzuty.append(wynik)
     print(nowe_rzuty)
@@ -33,5 +33,19 @@ def rzut_kostka_check_duplicate():
         return True
 
 
+def double_dice_throw(throws):
+    number_of_doubles = 0
+    for idx in range(throws):
+        result1 = rzut_kostka()
+        result2 = rzut_kostka()
+        print(f'Result 1: {result1} Result 2: {result2}')
+        if result1 == result2:
+            number_of_doubles += 1
+    return number_of_doubles
+
+
+throws = int(input("Podaj liczbę rzutów: "))
+
 rzut_kostka()
 print(rzut_kostka_check_duplicate())
+print(f'Przy rzucie dwoma kośćmi było {double_dice_throw(throws)} powtórzeń')
