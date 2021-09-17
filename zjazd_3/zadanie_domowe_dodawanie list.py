@@ -28,26 +28,24 @@ def dodaj_listy_input():
     raw_list1 = raw_input1.split(',')
     raw_list2 = raw_input2.split(',')
 
-    print(f'raw_input1: {raw_input1}')
-    print(f'raw_input2: {raw_input2}')
-    print(f'raw_list1: {raw_list1}')
-    print(f'raw_list2: {raw_list2}')
-
     stripped_list1 = [element.strip() for element in raw_list1]
     stripped_list2 = [element.strip() for element in raw_list2]
 
     int_list1 = [int(element) for element in stripped_list1]
     int_list2 = [int(element) for element in stripped_list2]
 
-
+    print(f'raw_input1: {raw_input1}')
+    print(f'raw_input2: {raw_input2}')
+    print(f'raw_list1: {raw_list1}')
+    print(f'raw_list2: {raw_list2}')
     print(f'stripped_list1 = {stripped_list1}')
     print(f'stripped_list2 = {stripped_list2}')
     print(f'int_list1: {int_list1}')
     print(f'int_list2: {int_list2}')
 
     #list comprehension
-    #return [int(element) for element in [element.strip() for element in raw_input1.split(',')]]
-
+    # final = [int(element) for element in [element.strip() for element in raw_input1.split(',')]]
+    # print(final)
 dodaj_listy_input()
 
 
