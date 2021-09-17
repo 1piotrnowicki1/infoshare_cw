@@ -12,17 +12,9 @@ do_realizacji({‘bluzka’: 5, ‘spodnie’: 3}, ‘spodnie’, 2) -> True
 do_realizacji(({‘bluzka’: 5, ‘spodnie’: 3}, ‘spodnie’, 4) - False
 """
 
-towar = {'bluzka': 2, 'spodnie': 1}
+def do_realizacji(stany_magazynowe: dict, zamawiany_towar: str, ilosc_zamawianych_sztuk: int):
+    return stany_magazynowe.get(zamawiany_towar, -1) > ilosc_zamawianych_sztuk
 
-
-def sklep(towar, zamowienie, n):
-    if zamowienie in towar:
-        if towar[zamowienie] >= n:
-            print("True")
-        else:
-            print("False")
-    else:
-        print("nie ma towaru")
-
-
-sklep({'bluzka': 5, 'spodnie': 3}, 'spodnie', 2)
+if __name__ == '__main__':
+    print(do_realizacji({'bluzka': 5, 'spodnie': 3}, 'spodnie', 2))
+    print(do_realizacji({'bluzka': 5, 'spodnie': 3}, 'spodnie', 4))

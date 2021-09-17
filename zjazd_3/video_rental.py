@@ -50,7 +50,11 @@ def main():
             elif option == '2':
                 title = input('Podaj tytul filmu: ')
                 price = int(input('Podaj cene filmu: '))
-                movies[title] = price
+                quantity = int(input('Podaj ilosc dostepnych filmow: '))
+                movies[title] = {'price': price, 'quantity': quantity}
+
+
+
             elif option == '3':
                 # krok1: Przyjac dane na temat tytulu filmu
                 title = input('Podaj tytul filmu ktory chcialbys zmodyfikowac: ')
@@ -87,7 +91,15 @@ def main():
                     print(f'Film {title} nie jest dostępny')
                     input('Nacisnij enter, aby wrocic do glownego menu')
             elif option == '3':
-                pass
+                title = input('Podaj tytul filmu ktory chcialbys wypozyczyc: ')
+                if title in movies:
+                    if movies[title]['quantity'] > 0:
+                       movies[title]['quantity'] -= 1
+                       print(f'Film {title} został wypozyczony')
+                       [print(key, val) for key, val in movies.items()]
+                       input('Nacisnij enter, aby wrocic do glownego menu')
+                    else:
+                        print('Bak dostepnego filmu')
             elif option == '0':
                 break
 
