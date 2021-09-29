@@ -1,6 +1,6 @@
 """
 Opcje administratora:
- - Utworzenie nowego uzytkownika
+ - Utworzenie nowego uzytkownikaok
  - Dodanie filmu do bazy danych
  - Modyfikacja filmów w bazie danych
 
@@ -13,12 +13,12 @@ Opcje użytkownika:
 
 
 users = {'admin': '1234', 'user': '12345'}
-movies = {'a': {"price": 1, "quantity": 3}, 'b': {'price':2, "quantity": 5}}
+movies = {'a': {"price": 1, "quantity": 3}, 'b': {'price': 2, "quantity": 5}}
 
 def authenticate_user():
     login = input('Podaj nazwe uzytkownika: ')
-    password = input('Podaj haslo: ')
     if users.get(login):
+        password = input('Podaj haslo: ')
         if users[login] == password:
             return login
         else:
@@ -55,7 +55,6 @@ def main():
                 quantity = int(input('Podaj ilość fimów: '))
                 # krok2: zapisac nowego uzytkownika w 'bazie danych'
                 movies[title] = {"price": price, "quantity": quantity}
-                pass
 
             elif option == '3':
                 # krok1: przyjac dane na temat tytulu filmu
@@ -81,24 +80,24 @@ def main():
 
             if option == '1':
                 print(movies)
+                input('Nacisnij enter, aby wrocic do glownego menu')
 
             elif option == '2':
-                # krok1: przyjac dane nowego filmu
-                title = input('Podaj tytul filmu: ')
-                price = int(input('Podaj cene filmu: '))
-                # krok2: zapisac nowego uzytkownika w 'bazie danych'
-                movies[title] = price
-                pass
-
+                title = input("Podaj tytul szukanego filmu: ")
+                if title in movies:
+                    print(f'{title} jest dostepny')
+                else:
+                    print(f'{title} nie jest dostepny')
             elif option == '3':
                 # krok1: przyjac dane na temat tytulu filmu
-                title = input('Podaj tytul filmu ktory chcicalbys zmodyfikowac')
+                title = input('Podaj tytul filmu ktory chcicalbys wypozyczyc')
                 # krok2: sprawdzic czy podany tytul znajduje sie w bazie danych
                 if title in movies:
                     if movies[title]['quantity'] > 0:
                         print("Film wypozyczony ")
                         movies[title]['quantity'] -= 1
-                    quantity -= 1
+                    else:
+                        print(f'Film {title} nie jest doostepny')
                 else:
                     print('Film o podanym filmie nie znajduje sie w bazie danych')
 

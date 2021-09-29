@@ -12,7 +12,7 @@ do_realizacji({‘bluzka’: 5, ‘spodnie’: 3}, ‘spodnie’, 2) -> True
 do_realizacji(({‘bluzka’: 5, ‘spodnie’: 3}, ‘spodnie’, 4) - False
 """
 
-towar = {'bluzka': 2, 'spodnie': 1}
+#towar = {'bluzka': 2, 'spodnie': 1}
 
 
 def sklep(towar, zamowienie, n):
@@ -25,4 +25,4 @@ def sklep(towar, zamowienie, n):
         print("nie ma towaru")
 
 
-sklep({'bluzka': 5, 'spodnie': 3}, 'spodnie', 2)
+sklep({'bluzka': 5, 'spodnie': 3}, 'spodnie', 4)
