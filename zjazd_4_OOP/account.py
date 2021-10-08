@@ -1,6 +1,7 @@
 class BankAccount:
     next_account_id = 1
 
+    #drukowanie sposob 1
     def __str__(self):
         return str(vars(self))
 
@@ -11,7 +12,8 @@ class BankAccount:
         self.balance = balance
         BankAccount.next_account_id += 1
 
-    def print_self(self):
+    #drukowanie sposob 2
+    def print_account_self(self):
         for key, value in vars(self).items():
             print(key, value)
 
@@ -19,4 +21,4 @@ class BankAccount:
         if isinstance(new_balance, (int, float)):
             self.balance = new_balance
         else:
-            print('Nowy ba  lans musi byc intem')
+            print('Nowy balans musi byc intem')

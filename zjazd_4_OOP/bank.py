@@ -6,7 +6,7 @@ from operation import Operation
 class Bank:
     client_list = []
     card_list = []
-
+    operation_history = []
     def __init__(self):
         self.main()
 
@@ -20,28 +20,34 @@ class Bank:
         print('5. Pokaz konta bankowe')
         print('6. Wyślij pieniądze')
         print('7. Ustaw balans')
+        print('8. Historia operacji')
 
     def add_operation_history(self, operation: str) -> None:
          """
-         Creates an OperationHistory object, then adds it to Bank.operation_history
+         Creates an Operation object, then adds it to Bank.operation_history
 
          Args:
               operation (str): name of the operation
          """
          new_operation = Operation(operation)
-         Bank.add_operation_history.append(new_operation)
-
+         Bank.operation_history.append(new_operation)
 
     def add_card(self):
         pin = input('Podaj pin: ')
         saldo = input('Podaj saldo: ')
+        # card.Card(pin, saldo)
         card = Card(pin, saldo)
         Bank.card_list.append(card)
+        self.add_operation_history('New card created')
 
     def show_cards(self):
-         print(Bank.card_list)
+        #print(Bank.card_list)
     # def show_cards(self):
     #     [print(str(card.card_number) + '. ' + str(card.saldo)) for card in Bank.card_list]
+
+        for card in Bank.card_list:
+            card.print_self()
+        self.add_operation_history('Cards information requested')
 
     def show_card_balance(self):
         # 1. Przyjecie od uzytkownika numeru karty
@@ -62,29 +68,54 @@ class Bank:
                 print('PIN nieprawidlowy')
         else:
             print('Nie ma takiej karty')
-        self.add_operation_history('Cards information requested')
+        #self.add_operation_history('Cards information requested')
+        self.add_operation_history('Show balance card requested')
 
     def add_bank_account(self):
         owner = input('Proszę podać właściciela: ')
         password = input('Proszę podać hasło')
         account = BankAccount(owner, password)
         Bank.client_list.append(account)
+        self.add_operation_history('New bank account created')
 
     def show_operation_history(self):
         for operation in Bank.operation_history:
-            print()
+            print(vars(operation))
 
     def show_bank_accounts(self):
         # print(Bank.client_list)
+
         # Sposób 1: __str__
         # for bank_account in Bank.client_list
         #     print(bank_account)
 
-        # Sposób 2:
+        # Sposób 2: self.print_self()
         for bank_account in Bank.client_list:
-            bank_account.print_self()
+            bank_account.print_account_self()
+        self.add_operation_history('Show bank account requested')
 
     def set_account_balance(self):
+        def check_if_account_exists(account_id):
+            # Jezeli uzytkownik istnieje, zwroc obiekt
+            for bank_account in Bank.client_list:
+                if bank_account.id == account_id:
+                    return bank_account
+                else:
+                    continue
+            # Jezeli uzytkownik nie istnieje, zwroc False
+            return False
+
+        # 1. Wybrać konto z którego ma nastąpić przelew
+        account_id = int(input('Podaj id konta dla którego chcesz ustawic przelew: '))
+        account = check_if_account_exists(account_id)
+        if account:
+            new_balance = int(input('Podaj balans'))
+            account.set_balance(new_balance)
+        else:
+            print('Wybrane konto nie pasuje')
+        self.add_operation_history('Account balance setted')
+
+    def send_money(self):
         def check_if_account_exists(account_id):
             # Jezeli uzytkownik istnieje, zwroc obiekt
             for bank_account in Bank.client_list:
@@ -99,26 +130,6 @@ class Bank:
         account_id = int(input('Podaj id konta z którego chcesz wysłać pieniądze: '))
         account = check_if_account_exists(account_id)
         if account:
-            new_balance = int(input('Podaj balans'))
-            account.set_balance(new_balance)
-        else:
-            print('Wybrane konto nie pasuje')
-
-    def send_money(self):
-        def check_if_account_exists(account_id):
-            # Jezeli uzytkownik istnieje, zwroc obiekt
-            for bank_account in Bank.client_list:
-                if bank_account.id == account_id:
-                    return bank_account
-                else:
-                    continue
-            # Jezeli uzytkownik nie istnieje, zwroc False
-            return False
-
-        # 1. Wybrać konto z którego ma nastąpić przelew
-            account_id = int(input('Podaj id konta z którego chcesz wysłać pieniądze: '))
-            account = check_if_account_exists(account_id)
-        if account:
             # 2. Wybrać sumę i sprawdzić czy jest to mozliwe
             amount = int(input('Podaj ilość pienędzy do wysłania: '))
             if account.balance >= amount:
@@ -131,6 +142,11 @@ class Bank:
                     receiver_account.balance += amount
                 else:
                     print('Przepraszamy, ale konto odbiorcy nie istnieje.')
+            else:
+                print('Przepraszam, niewystarczajaca ilosc pieniedzy')
+        else:
+            print('Przepraszam, wybrane konto nie istnieje.')
+        self.add_operation_history('Transfer money')
 
     def main(self):
         while True:

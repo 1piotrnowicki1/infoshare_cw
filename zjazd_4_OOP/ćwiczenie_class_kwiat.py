@@ -21,8 +21,9 @@ class Kwiat:
     def malej(self):
         self.wzrost -= 1
 
-print('Sadzimy kwiat')
+
 kwiat = Kwiat('roza', 'red', 'k1', 30)
+print(f'Sadzimy kwiat {kwiat.name}')
 for i in range(15):
     print(f'W dniu {i} wysokość kwiata wynosi: {kwiat.wzrost}')
     kwiat.rosnij()

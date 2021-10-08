@@ -2,6 +2,7 @@
 Klasa Pies:
 atrybuty instancji:
 imie, rasa, wzrost, waga
+
 funkcje:
 poglaszcz, szczekaj
 
