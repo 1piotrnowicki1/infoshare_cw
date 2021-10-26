@@ -24,7 +24,7 @@ class KidKid(Kid):
         print(super().hair_color)
 
 
-# polimorfizm
+# POLIMORFIZM
 kidkid = KidKid()
 print(isinstance(kidkid, Parent1))
 print(isinstance(kidkid, Parent2))
